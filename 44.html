@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4번째 퀴즈</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-image: url('aa.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .background {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 80%;
+            height: 92%;
+            background-image: url('bb.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            transform: translate(-50%, -50%);
+            background-size: 100%;
+        }
+
+        #title {
+            margin-top: 10vh;
+            font-size: 24px;
+            text-align: center;
+        }
+
+        #images {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .image {
+            width: 20%;
+            aspect-ratio: 1;
+            margin: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            font-size: 2em;
+            border-radius: 20px;
+            background-color: white;
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.336);
+            margin-top: 10vh;
+        }
+
+        #words {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            width: 100%;
+            position: relative;
+            background-color: rgba(255, 166, 0, 0.384);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+            box-sizing: border-box;
+            height: 20vh;
+            width: 75vw;
+            left: 3%;
+            margin-top: 5vh;
+        }
+
+        .word {
+            padding: 12px;
+            border: 1px solid #999999;
+            cursor: pointer;
+            position: absolute;
+            transition: opacity 0.2s;
+            background-color: #ffffff;
+            width: 11vw;
+            border-radius: 15px;
+            font-size: 5vh;
+            font-weight: 400;
+        }
+
+        .word:nth-child(1) { left: 3%; }
+        .word:nth-child(2) { left: 28%; }
+        .word:nth-child(3) { left: 53%; }
+        .word:nth-child(4) { left: 78%; }
+
+        .correct {
+            background-color: lightgreen;
+        }
+
+        .wrong {
+            background-color: lightcoral;
+        }
+
+        .overlay {
+            position: absolute;
+            display: none;
+            height: 22vh;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .one {
+            max-height: 70%;
+            max-width: 70%;
+        }
+
+        .xx {
+            position: absolute;
+            display: none;
+            height: 18vh;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #icon-container {
+            position: absolute;
+            bottom: -15vh;
+            left: -28%;
+            width: 40vw;
+            height: 40vh;
+            pointer-events: none;
+        }
+
+        #icon-container img {
+            pointer-events: auto;
+            width: 100%;
+            height: 65%;
+            object-fit: contain;
+        }
+
+        #speech-bubble {
+            font-size: small;
+            position: absolute;
+            bottom: 80%;
+            left: 35%;
+            background-color: white;
+            border-radius: 10px;
+            padding: 13px 3px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 11vw;
+            text-align: center;
+        }
+
+        #speech-bubble:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border: 12px solid transparent;
+            border-top-color: #ffffff;
+            border-bottom: 0;
+            border-left: 0;
+            margin-left: -6px;
+            margin-bottom: -12px;
+        }
+
+        h1 {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 20px;
+            top: 3vh;
+            font-size: 6.8vh;
+        }
+
+        h1::after {
+            content: '';
+            display: block;
+            width: 99%;
+            height: 10px;
+            background-color: yellow;
+            position: absolute;
+            left: 0;
+            bottom: -3vh;
+        }
+
+        .moving {
+            opacity: 0.5;
+            z-index: 10;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background">
+        <h1><?php echo $row['quiz4_name'] ?></h1>
+    
+        <div id="images">
+            <div class="image" data-word="smooth">
+                <img class="one" src="q1.png" style="width: 100%; height: 100%;"/>
+                <img class="overlay" src="one.png">
+                <img class="xx" src="xx.png">
+            </div>
+            <div class="image" data-word="soft">
+                <img class="one" src="q2.png" style="width: 100%; height: 100%;"/>
+                <img class="overlay" src="one.png">
+                <img class="xx" src="xx.png">
+            </div>
+            <div class="image" data-word="hard">
+                <img class="one" src="q3.png" style="width: 100%; height: 100%;"/>
+                <img class="overlay" src="one.png">
+                <img class="xx" src="xx.png">
+            </div>
+            <div class="image" data-word="rough">
+                <img class="one" src="q4.png" style="width: 100%; height: 100%; mocht=">
+                <img class="overlay" src="one.png">
+                <img class="xx" src="xx.png">
+            </div>
+        </div>
+
+        <div id="words-container">
+            <div id="words">
+                <div class="word" data-word="<?php echo $row['quiz4_answer1'] ?>">tree</div>
+                <div class="word" data-word="<?php echo $row['quiz4_answer2'] ?>">apple</div>
+                <div class="word" data-word="<?php echo $row['quiz4_answer3'] ?>">ship</div>
+                <div class="word" data-word="<?php echo $row['quiz4_answer4'] ?>">plane</div>
+            </div>
+        </div>
+
+        <div id="icon-container">
+            <img src="2icon.png" alt="아이콘 이미지">
+            <div id="speech-bubble">
+                배운 내용을 <br/> 잘 떠올려봐요!
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const wrongAnswerUrl = "../quizeffect/again.php";
+        const correctAnswerUrl = "../quizeffect/next.php";
+
+        const images = document.querySelectorAll('.image');
+        const words = document.querySelectorAll('.word');
+        let selectedWord = null;
+        let offsetX, offsetY;
+        const imageStates = Array(images.length).fill(false);
+
+        // 이벤트 좌표 계산 함수
+        function getCoordinates(event) {
+            const rect = selectedWord.getBoundingClientRect();
+            if (event.type.includes('touch')) {
+                const touch = event.touches[0];
+                return {
+                    x: touch.clientX - rect.left,
+                    y: touch.clientY - rect.top
+                };
+            } else {
+                return {
+                    x: event.clientX - rect.left,
+                    y: event.clientY - rect.top
+                };
+            }
+        }
+
+        // 드래그 시작
+        function startDragging(event) {
+            if (selectedWord || this.classList.contains('moving')) return;
+
+            selectedWord = this;
+            const { x, y } = getCoordinates(event);
+            offsetX = x;
+            offsetY = y;
+
+            selectedWord.classList.add('moving');
+            selectedWord.style.position = 'absolute'; // 드래그를 위해 position 유지
+            selectedWord.style.opacity = 0.5;
+            selectedWord.style.zIndex = 10;
+
+            event.preventDefault();
+        }
+
+        // 드래그 이동
+        function moveDragging(event) {
+            if (!selectedWord) return;
+
+            const touch = event.type.includes('touch') ? event.touches[0] : event;
+            const newLeft = touch.clientX - offsetX;
+            const newTop = touch.clientY - offsetY;
+
+            selectedWord.style.left = `${newLeft}px`;
+            selectedWord.style.top = `${newTop}px`;
+
+            event.preventDefault();
+        }
+
+        // 드래그 종료
+        function stopDragging(event) {
+            if (!selectedWord) return;
+
+            let isDroppedOnImage = false;
+
+            images.forEach((image, index) => {
+                const rect = image.getBoundingClientRect();
+                const wordRect = selectedWord.getBoundingClientRect();
+
+                if (
+                    wordRect.left < rect.right &&
+                    wordRect.right > rect.left &&
+                    wordRect.top < rect.bottom &&
+                    wordRect.bottom > rect.top
+                ) {
+                    isDroppedOnImage = true;
+
+                    if (imageStates[index]) {
+                        resetWord();
+                        return;
+                    }
+
+                    if (image.dataset.word === selectedWord.dataset.word) {
+                        image.classList.add('correct');
+                        selectedWord.classList.add('correct');
+                        image.querySelector('.overlay').style.display = 'block';
+                        image.style.zIndex = 30;
+
+                        const correctImages = document.querySelectorAll('.image .overlay[style*="display: block"]');
+                        if (correctImages.length === 4) {
+                            window.location.href = correctAnswerUrl;
+                        }
+                    } else {
+                        image.classList.add('wrong');
+                        selectedWord.classList.add('wrong');
+                        image.querySelector('.xx').style.display = 'block';
+                        image.style.zIndex = 30;
+                    }
+
+                    imageStates[index] = true;
+                }
+            });
+
+            if (!isDroppedOnImage) {
+                resetWord();
+            } else {
+                selectedWord.classList.add('moving');
+            }
+
+            selectedWord = null;
+            event.preventDefault();
+        }
+
+        // 단어 초기화 함수
+        function resetWord() {
+            selectedWord.style.opacity = 1;
+            selectedWord.style.zIndex = 1;
+            selectedWord.style.left = ''; // 원래 위치로 복원
+            selectedWord.style.top = '';
+            selectedWord.classList.remove('moving');
+        }
+
+        // 이벤트 등록
+        words.forEach(word => {
+            // 마우스 이벤트
+            word.addEventListener('mousedown', startDragging);
+            document.addEventListener('mousemove', moveDragging);
+            document.addEventListener('mouseup', stopDragging);
+
+            // 터치 이벤트
+            word.addEventListener('touchstart', startDragging);
+            document.addEventListener('touchmove', moveDragging);
+            document.addEventListener('touchend', stopDragging);
+        });
+    </script>
+</body>
+</html>
